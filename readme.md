@@ -87,7 +87,7 @@ string int_to_roman_iterative(int i) {
 
     if (i < 0)
         return "ERROR: too small";
-    if (i >= 4000)
+    if (i > 5000)
         return "ERROR: too large";
 
     string ret = "";
