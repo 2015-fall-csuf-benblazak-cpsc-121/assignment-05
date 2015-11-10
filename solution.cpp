@@ -67,3 +67,69 @@ int main()
 
 	return 0;
 }
+
+Int to Roman
+
+#include "stdafx.h"
+#include <iostream>
+using std::cout;
+using std::endl;
+#include <string>
+using std::string;
+
+string int_to_roman_iterative(int i) 
+{
+	const string numerals[] = 
+	{
+		"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I",
+	};
+	const int values[] = 
+	{
+		1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1,
+	};
+
+	if (i < 0)
+		return "ERROR: too small";
+	if (i >= 4000)
+		return "ERROR: too large";
+
+	string ret = "";
+	int a = 0;
+	int noOfElement = sizeof(values) / sizeof(int);
+	while (a < noOfElement && i > 0)
+	{
+		while (i >= values[a]) 
+		{
+			ret += numerals[a];
+			i -= values[a];
+		}
+		a++;
+	}
+
+	return ret;
+}
+
+string int_to_roman(int number)
+{
+	if (number < 1) return "";
+	if (number >= 1000) return "M" + int_to_roman(number - 1000);
+	if (number >= 900) return "CM" + int_to_roman(number - 900);
+	if (number >= 500) return "D" + int_to_roman(number - 500);
+	if (number >= 400) return "CD" + int_to_roman(number - 400);
+	if (number >= 100) return "C" + int_to_roman(number - 100);
+	if (number >= 90) return "XC" + int_to_roman(number - 90);
+	if (number >= 50) return "L" + int_to_roman(number - 50);
+	if (number >= 40) return "XL" + int_to_roman(number - 40);
+	if (number >= 10) return "X" + int_to_roman(number - 10);
+	if (number >= 9) return "IX" + int_to_roman(number - 9);
+	if (number >= 5) return "V" + int_to_roman(number - 5);
+	if (number >= 4) return "IV" + int_to_roman(number - 4);
+	if (number >= 1) return "I" + int_to_roman(number - 1);
+}
+int main()
+{
+	cout << int_to_roman_iterative(3691) << endl;
+	cout << int_to_roman(3691) << endl;
+
+	return 0;
+}
